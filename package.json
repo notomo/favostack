@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.4",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
+    "webextension-polyfill-ts": "^0.9.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "webpack --mode development",
+    "build:prod": "webpack --mode production",
+    "build:ext": "npm run build:prod && mkdir -p ext/chrome && zip -r dist.zip dist && mv dist.zip ext/chrome/",
+    "watch": "webpack -w --mode development"
+  }
+}
