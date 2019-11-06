@@ -1,17 +1,54 @@
-import { browser } from "webextension-polyfill-ts";
+import { browser, Bookmarks } from "webextension-polyfill-ts";
 
-browser.bookmarks.onCreated.addListener((id, bookmarkInfo) => {
+enum NextState {
+  temporary,
+  permanent,
+}
+
+class NextStates {
+  private readonly states = new Map<string, NextState>();
+
+  public add(id: string) {
+    this.states.set(id, NextState.temporary);
+  }
+
+  public next(id: string): boolean {
+    const state = this.states.get(id);
+    if (state === undefined) {
+      return false;
+    }
+    if (state === NextState.temporary) {
+      this.states.set(id, NextState.permanent);
+      return false;
+    }
+
+    this.states.delete(id);
+    return true;
+  }
+}
+
+const createdBookmarkStates = new NextStates();
+
+const onCreated = (id: string, _bookmark: Bookmarks.BookmarkTreeNode) => {
   browser.bookmarks.move(id, { index: 0 });
-});
+  createdBookmarkStates.add(id);
+};
+if (browser.bookmarks.onCreated.hasListener(onCreated)) {
+  browser.bookmarks.onCreated.removeListener(onCreated);
+}
+browser.bookmarks.onCreated.addListener(onCreated);
 
-browser.bookmarks.onMoved.addListener(async (id, bookmarkInfo) => {
-  const recentBookmarks = await browser.bookmarks.getRecent(1);
-  if (recentBookmarks.length == 0) {
+const onMoved = async (
+  id: string,
+  _bookmarkInfo: Bookmarks.OnMovedMoveInfoType
+) => {
+  const next = createdBookmarkStates.next(id);
+  if (next === false) {
     return;
   }
-  if (recentBookmarks[0].id !== id) {
-    return;
-  }
-
   browser.bookmarks.move(id, { index: 0 });
-});
+};
+if (browser.bookmarks.onMoved.hasListener(onMoved)) {
+  browser.bookmarks.onMoved.removeListener(onMoved);
+}
+browser.bookmarks.onMoved.addListener(onMoved);
