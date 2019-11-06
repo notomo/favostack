@@ -5,16 +5,9 @@ module.exports = (env, options) => {
     {
       from: "**/*",
       context: "src",
-      ignore: ["scripts/**/*", "reload.js"],
+      ignore: ["scripts/**/*", "images/icon.svg"],
     },
   ];
-
-  if (options.mode === "development") {
-    copyPluginConfig.push({
-      from: "reload.js",
-      context: "src",
-    });
-  }
 
   const config = {
     entry: {
