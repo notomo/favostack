@@ -1,7 +1,7 @@
 {
     "name": "favostack",
     "description": "Push the latest bookmark to the top",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "manifest_version": 2,
     "background": {
         "scripts": [

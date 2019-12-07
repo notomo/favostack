@@ -46,10 +46,7 @@ export class CappedQueue<T> {
   public enqueue(item: T): T | null {
     let outdated: T | null = null;
     if (this.items.length == this.size) {
-      let popped = this.items.shift();
-      if (popped !== undefined) {
-        outdated = popped;
-      }
+      outdated = this.items.shift() as T;
     }
 
     this.items.push(item);

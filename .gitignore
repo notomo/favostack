@@ -1,3 +1,4 @@
 dist/
 ext/
 node_modules
+coverage/
