@@ -1,13 +1,19 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = (env, options) => {
-  const copyPluginConfig = [
-    {
-      from: "**/*",
-      context: "src",
-      ignore: ["scripts/**/*", "images/icon.svg"],
-    },
-  ];
+module.exports = (_env, options) => {
+  const copyPluginConfig = {
+    patterns: [
+      {
+        from: "**/*",
+        context: "src",
+        globOptions: {
+          dot: false,
+          gitignore: false,
+          ignore: ["**/*.ts", "**/icon.svg"],
+        },
+      },
+    ],
+  };
 
   const config = {
     entry: {
