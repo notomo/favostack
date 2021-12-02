@@ -1,4 +1,4 @@
-import { CappedQueue, NextStates } from "./state";
+import { CappedQueue, NextStates, NextState } from "./state";
 
 describe("CappedQueue", () => {
   it("enqueue", () => {
@@ -68,5 +68,15 @@ describe("NextStates", () => {
       const canMove = states.next("b");
       expect(canMove).toEqual(false);
     }
+  });
+
+  it("from", () => {
+    const raw_states = { a: NextState.permanent };
+    const items = ["a"];
+
+    const states = NextStates.from(raw_states, items);
+
+    const canMove = states.next("a");
+    expect(canMove).toEqual(true);
   });
 });

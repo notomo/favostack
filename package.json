@@ -36,7 +36,7 @@
     ],
     "verbose": true,
     "collectCoverageFrom": [
-      "**/src/scripts/**/*.ts"
+      "**/src/**/*.ts"
     ],
     "coverageDirectory": "./coverage/"
   }

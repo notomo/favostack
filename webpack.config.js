@@ -17,10 +17,10 @@ module.exports = (_env, options) => {
 
   const config = {
     entry: {
-      background: "./src/scripts/background.ts",
+      service_worker: "./src/service_worker.ts",
     },
     output: {
-      filename: "./scripts/[name].js",
+      filename: "./[name].js",
     },
     plugins: [new CopyWebpackPlugin(copyPluginConfig)],
     module: {

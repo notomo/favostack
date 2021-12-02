@@ -1,11 +1,20 @@
-enum NextState {
+export enum NextState {
   temporary,
   permanent,
 }
 
 export class NextStates {
-  private readonly states = new Map<string, NextState>();
-  private readonly queue = new CappedQueue<string>(3);
+  private static QUEUE_SIZE = 3;
+
+  constructor(
+    private readonly states: Map<string, NextState> = new Map<
+      string,
+      NextState
+    >(),
+    private readonly queue: CappedQueue<string> = new CappedQueue<string>(
+      NextStates.QUEUE_SIZE
+    )
+  ) {}
 
   public add(id: string) {
     if (!this.states.has(id)) {
@@ -31,6 +40,23 @@ export class NextStates {
 
     this.states.delete(id);
     return true;
+  }
+
+  public static from(
+    raw_states: { [key: string]: NextState },
+    items: string[]
+  ) {
+    const queue = new CappedQueue<string>(NextStates.QUEUE_SIZE);
+    for (const item of items) {
+      queue.enqueue(item);
+    }
+
+    const states = new Map<string, NextState>();
+    for (const key of Object.keys(raw_states)) {
+      states.set(key, raw_states[key]);
+    }
+
+    return new NextStates(states, queue);
   }
 }
 
