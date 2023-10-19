@@ -5,7 +5,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "jest": "^29.5.0",
     "ts-jest": "^29.0.5",
-    "ts-loader": "^9.4.2",
+    "ts-loader": "^9.5.0",
     "typescript": "^5.0.2",
     "webextension-polyfill-ts": "^0.26.0",
     "webpack": "^5.76.2",
