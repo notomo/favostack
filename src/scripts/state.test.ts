@@ -28,7 +28,7 @@ describe("CappedQueue", () => {
   });
 
   it("invalid queue size", () => {
-    expect(() => new CappedQueue(-1)).toThrowError(
+    expect(() => new CappedQueue(-1)).toThrow(
       "queue size should be a positive number"
     );
   });
