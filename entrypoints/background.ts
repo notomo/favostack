@@ -3,23 +3,25 @@ import { NextStates } from "./scripts/state";
 import { StateStorage } from "./scripts/storage";
 
 export default defineBackground({
-  async main() {
+  main() {
     const storage = new StateStorage(
       browser.storage.local.get,
       browser.storage.local.set
     );
 
-    const state = await storage.get();
-    if (!state) {
-      const createdBookmarkStates = new NextStates();
-      await storage.set(createdBookmarkStates);
-    }
+    (async () => {
+      const state = await storage.get();
+      if (!state) {
+        const createdBookmarkStates = new NextStates();
+        await storage.set(createdBookmarkStates);
+      }
+    })();
 
     const onCreated = async (
       id: string,
       _bookmark: Bookmarks.BookmarkTreeNode
     ) => {
-      browser.bookmarks.move(id, { index: 0 });
+      await browser.bookmarks.move(id, { index: 0 });
       const state = await storage.get();
       if (!state) {
         return;
@@ -44,7 +46,7 @@ export default defineBackground({
       if (next === false) {
         return;
       }
-      browser.bookmarks.move(id, { index: 0 });
+      await browser.bookmarks.move(id, { index: 0 });
     };
 
     if (browser.bookmarks.onMoved.hasListener(onMoved)) {
