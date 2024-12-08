@@ -13,6 +13,8 @@
     "build": "wxt zip",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "submit": "wxt submit --chrome-zip .output/*-chrome.zip",
+    "submit:dryrun": "wxt submit --dry-run --chrome-zip .output/*-chrome.zip"
   }
 }
