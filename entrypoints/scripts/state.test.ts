@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { CappedQueue, NextStates, NextState } from "./state";
 
 describe("CappedQueue", () => {

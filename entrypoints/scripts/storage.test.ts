@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { StateStorage, SetFunciton, GetFunciton } from "./storage";
 import { NextStates } from "./state";
 
