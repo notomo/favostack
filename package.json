@@ -4,7 +4,6 @@
   "type": "module",
   "version": "0.1.4",
   "devDependencies": {
-    "@types/chrome": "^0.0.280",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8",
     "wxt": "^0.19.13"
@@ -13,7 +12,7 @@
     "dev": "wxt",
     "build": "wxt zip",
     "test": "vitest run",
-    "compile": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "postinstall": "wxt prepare"
   }
 }
