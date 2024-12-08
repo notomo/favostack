@@ -1,13 +1,3 @@
 {
-    "compilerOptions": {
-        "target": "es2017",
-        "moduleResolution": "node",
-        "module": "es6",
-        "strict": true,
-        "noImplicitReturns": true,
-        "removeComments": true,
-        "noUnusedLocals": true,
-        "sourceMap": true,
-        "esModuleInterop": true
-    }
+  "extends": "./.wxt/tsconfig.json"
 }

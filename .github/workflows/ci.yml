@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm install
-      - run: npm run build:ext
+      - run: npm run zip
       - run: npm run test

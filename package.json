@@ -1,43 +1,33 @@
 {
   "private": true,
+  "name": "favostack",
+  "type": "module",
+  "version": "0.1.4",
   "devDependencies": {
     "@types/jest": "^29.5.14",
-    "copy-webpack-plugin": "^12.0.2",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",
+    "@types/chrome": "^0.0.280",
     "typescript": "^5.7.2",
-    "webextension-polyfill-ts": "^0.26.0",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^5.1.4",
-    "minimist": "^1.2.8"
+    "wxt": "^0.19.13"
   },
   "dependencies": {},
   "scripts": {
+    "dev": "wxt",
+    "build": "wxt zip",
     "test": "jest --coverage",
-    "build": "webpack --mode development",
-    "build:prod": "webpack --mode production",
-    "build:ext": "npm run build:prod && mkdir -p ext/chrome && zip -r dist.zip dist && mv dist.zip ext/chrome/",
-    "watch": "webpack -w --mode development"
+    "compile": "tsc --noEmit",
+    "postinstall": "wxt prepare"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"],
     "transform": {
       "\\.ts$": "ts-jest"
     },
-    "testMatch": [
-      "**/src/**/*\\.test\\.ts"
-    ],
+    "testMatch": ["**/entrypoints/**/*\\.test\\.ts"],
     "verbose": true,
-    "collectCoverageFrom": [
-      "**/src/**/*.ts"
-    ],
+    "collectCoverageFrom": ["**/src/**/*.ts"],
     "coverageDirectory": "./coverage/"
   }
 }
