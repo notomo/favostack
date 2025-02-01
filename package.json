@@ -6,7 +6,7 @@
   "devDependencies": {
     "typescript": "^5.7.3",
     "vitest": "^3.0.4",
-    "wxt": "^0.19.25"
+    "wxt": "^0.19.26"
   },
   "scripts": {
     "dev": "wxt",
