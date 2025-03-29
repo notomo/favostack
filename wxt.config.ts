@@ -2,7 +2,6 @@ import { defineConfig } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-  extensionApi: "webextension-polyfill",
   manifest: {
     description: "Push the latest bookmark to the top",
     permissions: ["bookmarks", "storage"],
