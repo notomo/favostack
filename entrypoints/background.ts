@@ -1,4 +1,4 @@
-import { Bookmarks } from "wxt/browser";
+import type { Browser } from "wxt/browser";
 import { NextStates } from "./scripts/state";
 import { StateStorage } from "./scripts/storage";
 
@@ -19,7 +19,7 @@ export default defineBackground({
 
     const onCreated = async (
       id: string,
-      _bookmark: Bookmarks.BookmarkTreeNode
+      _bookmark: Browser.bookmarks.BookmarkTreeNode
     ) => {
       await browser.bookmarks.move(id, { index: 0 });
       const state = await storage.get();
@@ -36,7 +36,7 @@ export default defineBackground({
 
     const onMoved = async (
       id: string,
-      _bookmarkInfo: Bookmarks.OnMovedMoveInfoType
+      _bookmarkInfo: Browser.bookmarks.MoveDestination
     ) => {
       const state = await storage.get();
       if (!state) {
