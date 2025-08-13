@@ -3,6 +3,9 @@ name: release
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   submit:
     runs-on: ubuntu-latest
