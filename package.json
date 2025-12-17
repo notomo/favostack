@@ -14,7 +14,6 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "postinstall": "wxt prepare",
-    "submit": "wxt submit --chrome-zip .output/*-chrome.zip",
-    "submit:dryrun": "wxt submit --dry-run --chrome-zip .output/*-chrome.zip"
+    "deploy_for_local": "npm run build && mkdir -p $FAVOSTACK_LOCAL && cp -rf ./.output/chrome-mv3/* $FAVOSTACK_LOCAL"
   }
 }
