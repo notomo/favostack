@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { CappedQueue, NextStates, NextState } from "./state";
+import { describe, expect, it } from "vitest";
+import { CappedQueue, NextState, NextStates } from "./state";
 
 describe("CappedQueue", () => {
   it("enqueue", () => {
@@ -30,7 +30,7 @@ describe("CappedQueue", () => {
 
   it("invalid queue size", () => {
     expect(() => new CappedQueue(-1)).toThrow(
-      "queue size should be a positive number"
+      "queue size should be a positive number",
     );
   });
 });

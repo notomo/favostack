@@ -6,7 +6,7 @@ export default defineBackground({
   main() {
     const storage = new StateStorage(
       browser.storage.local.get,
-      browser.storage.local.set
+      browser.storage.local.set,
     );
 
     (async () => {
@@ -19,7 +19,7 @@ export default defineBackground({
 
     const onCreated = async (
       id: string,
-      _bookmark: Browser.bookmarks.BookmarkTreeNode
+      _bookmark: Browser.bookmarks.BookmarkTreeNode,
     ) => {
       await browser.bookmarks.move(id, { index: 0 });
       const state = await storage.get();
@@ -36,7 +36,7 @@ export default defineBackground({
 
     const onMoved = async (
       id: string,
-      _bookmarkInfo: Browser.bookmarks.MoveDestination
+      _bookmarkInfo: Browser.bookmarks.MoveDestination,
     ) => {
       const state = await storage.get();
       if (!state) {

@@ -12,8 +12,8 @@ export class NextStates {
       NextState
     >(),
     private readonly queue: CappedQueue<string> = new CappedQueue<string>(
-      NextStates.QUEUE_SIZE
-    )
+      NextStates.QUEUE_SIZE,
+    ),
   ) {}
 
   public add(id: string) {
@@ -44,7 +44,7 @@ export class NextStates {
 
   public static from(
     raw_states: { [key: string]: NextState },
-    items: string[]
+    items: string[],
   ) {
     const queue = new CappedQueue<string>(NextStates.QUEUE_SIZE);
     for (const item of items) {
@@ -71,7 +71,7 @@ export class CappedQueue<T> {
 
   public enqueue(item: T): T | null {
     let outdated: T | null = null;
-    if (this.items.length == this.size) {
+    if (this.items.length === this.size) {
       outdated = this.items.shift() as T;
     }
 

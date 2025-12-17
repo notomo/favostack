@@ -1,12 +1,14 @@
 import { NextStates } from "./state";
 
-export type GetFunciton = (key: string) => Promise<{ [key: string]: any }>;
-export type SetFunciton = (keyValue: { [key: string]: any }) => Promise<void>;
+export type GetFunciton = (key: string) => Promise<{ [key: string]: unknown }>;
+export type SetFunciton = (keyValue: {
+  [key: string]: unknown;
+}) => Promise<void>;
 
 export class StateStorage {
   constructor(
     private readonly getFunction: GetFunciton,
-    private readonly setFunction: SetFunciton
+    private readonly setFunction: SetFunciton,
   ) {}
 
   private static KEY = "KEY";

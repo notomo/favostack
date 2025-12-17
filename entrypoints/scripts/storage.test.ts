@@ -1,11 +1,11 @@
-import { describe, it, expect } from "vitest";
-import { StateStorage, SetFunciton, GetFunciton } from "./storage";
+import { describe, expect, it } from "vitest";
 import { NextStates } from "./state";
+import { type GetFunciton, type SetFunciton, StateStorage } from "./storage";
 
 const mock = (): [SetFunciton, GetFunciton] => {
-  const stored: { [key: string]: any } = {};
+  const stored: { [key: string]: unknown } = {};
 
-  const set = async (keyValue: { [key: string]: any }) => {
+  const set = async (keyValue: { [key: string]: unknown }) => {
     for (const key of Object.keys(keyValue)) {
       stored[key] = JSON.parse(JSON.stringify(keyValue[key]));
     }
