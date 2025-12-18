@@ -1,4 +1,9 @@
-import { NextStates } from "./state";
+import { type NextState, NextStates } from "./state";
+
+type StoredData = {
+  states: { [key: string]: NextState };
+  queue: { items: string[] };
+};
 
 export type GetFunciton = (key: string) => Promise<{ [key: string]: unknown }>;
 export type SetFunciton = (keyValue: {
@@ -15,7 +20,7 @@ export class StateStorage {
 
   async get(): Promise<NextStates | null> {
     const value = await this.getFunction(StateStorage.KEY);
-    const raw = value[StateStorage.KEY];
+    const raw = value[StateStorage.KEY] as StoredData | undefined;
     if (!raw) {
       return null;
     }
